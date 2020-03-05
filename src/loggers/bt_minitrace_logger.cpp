@@ -6,7 +6,7 @@ namespace BT
 {
 std::atomic<bool> MinitraceLogger::ref_count(false);
 
-MinitraceLogger::MinitraceLogger(const Tree &tree, const char* filename_json)
+MinitraceLogger::MinitraceLogger(const BT::Tree &tree, const char* filename_json)
   : StatusChangeLogger(tree.root_node   )
 {
     bool expected = false;
