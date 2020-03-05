@@ -30,6 +30,9 @@ option(BUILD_TOOLS "Build commandline tools" ON)
 find_package(Threads)
 find_package(ZMQ)
 
+find_package(PkgConfig REQUIRED)
+pkg_check_modules(JSONCPP jsoncpp)
+
 list(APPEND BEHAVIOR_TREE_EXTERNAL_LIBRARIES
     ${CMAKE_THREAD_LIBS_INIT}
     ${CMAKE_DL_LIBS} )
@@ -156,6 +159,7 @@ list(APPEND BT_SOURCE
     src/loggers/bt_cout_logger.cpp
     src/loggers/bt_file_logger.cpp
     src/loggers/bt_minitrace_logger.cpp
+    src/loggers/bt_json_dynamic.cpp
     src/private/tinyxml2.cpp
 
     3rdparty/minitrace/minitrace.cpp
@@ -175,7 +179,9 @@ if (WIN32)
 endif()
 
 target_link_libraries(${BEHAVIOR_TREE_LIBRARY} PUBLIC
-    ${BEHAVIOR_TREE_EXTERNAL_LIBRARIES})
+    ${BEHAVIOR_TREE_EXTERNAL_LIBRARIES}
+    jsoncpp
+    )
 
 target_compile_definitions(${BEHAVIOR_TREE_LIBRARY} PRIVATE $<$<CONFIG:Debug>:TINYXML2_DEBUG>)
 
