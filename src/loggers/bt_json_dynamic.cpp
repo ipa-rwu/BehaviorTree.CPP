@@ -8,7 +8,7 @@ JsonDynamicLogger::JsonDynamicLogger(const BT::Tree& tree, const char* filename_
 : StatusChangeLogger(tree.root_node)
 {
     bool expected = false;
-    this->filename_json = filename_json;
+    file_os_.open(filename_json);
 
     if (!ref_count.compare_exchange_strong(expected, true))
     {
@@ -39,7 +39,6 @@ void JsonDynamicLogger::callback(Duration timestamp, const TreeNode& node, NodeS
     root["prestatus"] = toStr(prev_status, true).c_str();
     root["currstatus"] = toStr(status, true).c_str();
 
-    file_os_.open(filename_json);
 
     file_os_ << styledWriter.write(root);
     file_os_ << endl << endl;
