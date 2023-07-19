@@ -8,7 +8,6 @@
 
 namespace BT
 {
-
 /**
  * @brief The Groot2Publisher is used to create an interface between
  * your BT.CPP executor and Groot2.
@@ -59,11 +58,11 @@ public:
 
   std::chrono::milliseconds maxHeartbeatDelay() const;
 
+  void flush() override;
+
 private:
   void callback(Duration timestamp, const TreeNode& node, NodeStatus prev_status,
                 NodeStatus status) override;
-
-  void flush() override;
 
   void serverLoop();
 
