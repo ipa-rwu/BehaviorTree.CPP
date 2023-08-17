@@ -1,0 +1,42 @@
+name: create_docker_image
+on:
+  push:
+    branches:
+      - master
+  schedule:
+    - cron: "0 0 * * *"
+
+env:
+  BUILDER_PREFIX: "ghcr.io/ipa-rwu/"
+  BUILDER_SUFFIX: ":latest"
+  CMAKE_ARGS: "-DCMAKE_BUILD_TYPE=Release"
+  REGISTRY: ghcr.io
+
+jobs:
+  EnvSetup:
+    runs-on: ubuntu-latest
+    name: Setup Dynamic Environment Variables
+    outputs:
+      registry: ${{ steps.set-output-defaults.outputs.registry }}
+      build-prefix: ${{ steps.set-output-defaults.outputs.build-prefix }}
+      build-suffix: ${{ steps.set-output-defaults.outputs.build-suffix }}
+      cmake-args: ${{ steps.set-output-defaults.outputs.cmake-args }}
+    steps:
+      - name: set outputs with default values
+        id: set-output-defaults
+        run: |
+          echo "registry=$REGISTRY" >> $GITHUB_OUTPUT
+          echo "build-prefix=$BUILDER_PREFIX" >> $GITHUB_OUTPUT
+          echo "build-suffix=$BUILDER_SUFFIX" >> $GITHUB_OUTPUT
+          echo "cmake-args=$CMAKE_ARGS" >> $GITHUB_OUTPUT
+  behavior_tree_cpp_v4:
+    needs: [EnvSetup]
+    uses: ./.github/workflows/docker_image_workflow_reuse.yaml
+    with:
+      context-path: .
+      ros-distro: humble
+      registry: ${{needs.EnvSetup.outputs.registry}}
+      image-name: ${{ github.repository_owner }}/behavior_tree_cpp_v4
+      build-prefix: ${{needs.EnvSetup.outputs.build-prefix}}
+      build-suffix: ${{needs.EnvSetup.outputs.build-suffix}}
+      cmake-args: ${{needs.EnvSetup.outputs.cmake-args}}
