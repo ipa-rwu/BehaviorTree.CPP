@@ -8,6 +8,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <atomic>
 
 #ifdef _WIN32
 #pragma warning (disable:4996)
@@ -25,6 +26,9 @@
 #include <sys/time.h>
 #include <unistd.h>
 #endif
+
+#define __STDC_FORMAT_MACROS
+#include <inttypes.h>
 
 #include "minitrace.h"
 
@@ -59,7 +63,7 @@ typedef struct raw_event {
 
 static raw_event_t *event_buffer;
 static raw_event_t *flush_buffer;
-static volatile int event_count;
+static std::atomic_int event_count;
 static int is_tracing = FALSE;
 static int is_flushing = FALSE;
 static int events_in_progress = 0;
