@@ -102,6 +102,9 @@ struct XMLParser::PImpl
 
   void loadDocImpl(XMLDocument* doc, bool add_includes);
 
+  void loadDocImplWithPath(XMLDocument* doc, bool add_includes,
+                           const std::string& parent_path = "");
+
   std::list<std::unique_ptr<XMLDocument> > opened_documents;
   std::map<std::string, const XMLElement*> tree_roots;
 
@@ -171,6 +174,17 @@ void XMLParser::loadFromText(const std::string& xml_text, bool add_includes)
   _p->loadDocImpl(doc, add_includes);
 }
 
+void XMLParser::loadFromTextWithPath(const std::string& xml_text,
+                                     const std::string& parent_path, bool add_includes)
+{
+  _p->opened_documents.emplace_back(new XMLDocument());
+
+  XMLDocument* doc = _p->opened_documents.back().get();
+  doc->Parse(xml_text.c_str(), xml_text.size());
+
+  _p->loadDocImplWithPath(doc, add_includes, parent_path);
+}
+
 std::vector<std::string> XMLParser::registeredBehaviorTrees() const
 {
   std::vector<std::string> out;
@@ -222,6 +236,108 @@ void BT::XMLParser::PImpl::loadSubtreeModel(const XMLElement* xml_root)
         }
       }
     }
+  }
+}
+
+std::string resolvePath(const std::string& currentFolder, const std::string& relativePath)
+{
+  std::filesystem::path currentPath(currentFolder);
+  std::filesystem::path fullPath = currentPath / relativePath;
+  return std::filesystem::absolute(fullPath).string();
+}
+
+void XMLParser::PImpl::loadDocImplWithPath(XMLDocument* doc, bool add_includes,
+                                           const std::string& parent_path)
+{
+  if(doc->Error())
+  {
+    char buffer[512];
+    snprintf(buffer, sizeof buffer, "Error parsing the XML: %s", doc->ErrorStr());
+    throw RuntimeError(buffer);
+  }
+
+  const XMLElement* xml_root = doc->RootElement();
+
+  auto format = xml_root->Attribute("BTCPP_format");
+  if(!format)
+  {
+    std::cout << "Warning: The first tag of the XML (<root>) should contain the "
+                 "attribute [BTCPP_format=\"4\"]\n"
+              << "Please check if your XML is compatible with version 4.x of BT.CPP"
+              << std::endl;
+  }
+
+  // Set current directory based on parent_path (root or included XML)
+  std::string current_dir = !parent_path.empty() ?
+                                std::filesystem::absolute(parent_path).string() :
+                                current_path.string();
+
+  // Recursively include other files
+  for(auto incl_node = xml_root->FirstChildElement("include"); incl_node != nullptr;
+      incl_node = incl_node->NextSiblingElement("include"))
+  {
+    if(!add_includes)
+    {
+      break;
+    }
+
+    // Extract the path from the <include> tag
+    std::string include_path = incl_node->Attribute("path");
+
+    // Resolve the path (relative to current_dir) using the resolvePath function
+    std::string resolved_path = resolvePath(current_dir, include_path);
+    // std::cout << "Resolved include path: " << resolved_path << std::endl;
+
+    // Open and parse the included XML document
+    opened_documents.emplace_back(new XMLDocument());
+    XMLDocument* next_doc = opened_documents.back().get();
+    next_doc->LoadFile(resolved_path.c_str());
+
+    // Change current_path to the directory of the included file for handling further relative paths
+    std::string include_dir = std::filesystem::path(resolved_path).parent_path().string();
+    const auto previous_path = current_path;  // Save current path to restore later
+    current_path = include_dir;               // Set the new current path
+
+    // Recursively load the included document
+    loadDocImplWithPath(next_doc, add_includes, current_path);
+
+    // Reset current_path to the previous directory after processing the included file
+    current_path = previous_path;
+  }
+
+  // Collect the names of all nodes registered with the behavior tree factory
+  std::unordered_map<std::string, BT::NodeType> registered_nodes;
+  for(const auto& it : factory.manifests())
+  {
+    registered_nodes.insert({ it.first, it.second.type });
+  }
+
+  // Verify and print the XML document
+  XMLPrinter printer;
+  doc->Print(&printer);
+  auto xml_text = std::string(printer.CStr(), size_t(printer.CStrSize()));
+
+  // Verify the validity of the XML before adding it to the list of registered trees
+  VerifyXML(xml_text, registered_nodes);
+
+  // Load the subtree models from the XML document
+  loadSubtreeModel(xml_root);
+
+  // Register each BehaviorTree within the XML
+  for(auto bt_node = xml_root->FirstChildElement("BehaviorTree"); bt_node != nullptr;
+      bt_node = bt_node->NextSiblingElement("BehaviorTree"))
+  {
+    std::string tree_name;
+    if(bt_node->Attribute("ID"))
+    {
+      tree_name = bt_node->Attribute("ID");
+    }
+    else
+    {
+      tree_name = "BehaviorTree_" + std::to_string(suffix_count++);
+    }
+
+    tree_roots[tree_name] = bt_node;
   }
 }
 

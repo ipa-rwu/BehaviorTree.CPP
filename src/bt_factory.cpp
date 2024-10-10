@@ -393,7 +393,8 @@ const std::set<std::string>& BehaviorTreeFactory::builtinNodes() const
 }
 
 Tree BehaviorTreeFactory::createTreeFromText(const std::string& text,
-                                             Blackboard::Ptr blackboard)
+                                             Blackboard::Ptr blackboard,
+                                             const std::string& parent_path)
 {
   if(!_p->parser->registeredBehaviorTrees().empty())
   {
@@ -404,7 +405,7 @@ Tree BehaviorTreeFactory::createTreeFromText(const std::string& text,
               << std::endl;
   }
   XMLParser parser(*this);
-  parser.loadFromText(text);
+  parser.loadFromTextWithPath(text, parent_path);
   auto tree = parser.instantiateTree(blackboard);
   tree.manifests = this->manifests();
   return tree;

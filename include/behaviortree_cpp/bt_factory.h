@@ -406,8 +406,9 @@ public:
    * @param blackboard  blackboard of the root tree
    * @return the newly created tree
    */
-  [[nodiscard]] Tree createTreeFromText(
-      const std::string& text, Blackboard::Ptr blackboard = Blackboard::create());
+  [[nodiscard]] Tree createTreeFromText(const std::string& text,
+                                        Blackboard::Ptr blackboard = Blackboard::create(),
+                                        const std::string& parent_path = "");
 
   /**
    * @brief createTreeFromFile will parse the XML from a given file.

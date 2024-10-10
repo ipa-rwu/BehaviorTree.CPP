@@ -41,6 +41,10 @@ public:
 
   virtual void loadFromText(const std::string& xml_text, bool add_includes = true) = 0;
 
+  virtual void loadFromTextWithPath(const std::string& xml_text,
+                                    const std::string& parent_path,
+                                    bool add_includes = true) = 0;
+
   virtual std::vector<std::string> registeredBehaviorTrees() const = 0;
 
   virtual Tree instantiateTree(const Blackboard::Ptr& root_blackboard,
