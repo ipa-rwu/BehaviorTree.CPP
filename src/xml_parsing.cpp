@@ -260,6 +260,7 @@ struct XMLParser::PImpl
     auto sources_before = tree_sources;
     auto models_before = subtree_models;
     auto path_before = current_path;
+    auto include_stack_before = include_stack;
     const int suffix_before = suffix_count;
     try
     {
@@ -271,6 +272,7 @@ struct XMLParser::PImpl
       tree_sources = std::move(sources_before);
       subtree_models = std::move(models_before);
       current_path = std::move(path_before);
+      include_stack = std::move(include_stack_before);
       suffix_count = suffix_before;
       opened_documents.erase(doc_it, opened_documents.end());
       throw;
@@ -342,6 +344,21 @@ void XMLParser::loadFromText(const std::string& xml_text, bool add_includes)
   XMLDocument* doc = _p->opened_documents.back().get();
   doc->Parse(xml_text.c_str(), xml_text.size());
 
+  _p->include_stack.clear();
+  _p->loadLastDocImpl(add_includes);
+}
+
+void XMLParser::loadFromTextWithPath(
+  const std::string & xml_text, const std::string & parent_path, bool add_includes)
+{
+  _p->opened_documents.emplace_back(new XMLDocument());
+
+  XMLDocument* doc = _p->opened_documents.back().get();
+  doc->Parse(xml_text.c_str(), xml_text.size());
+
+  if (!parent_path.empty()) {
+    _p->current_path = std::filesystem::absolute(parent_path);
+  }
   _p->include_stack.clear();
   _p->loadLastDocImpl(add_includes);
 }

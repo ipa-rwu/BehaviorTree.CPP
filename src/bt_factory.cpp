@@ -441,7 +441,8 @@ const std::set<std::string>& BehaviorTreeFactory::builtinNodes() const
 }
 
 Tree BehaviorTreeFactory::createTreeFromText(const std::string& text,
-                                             Blackboard::Ptr blackboard)
+                                             Blackboard::Ptr blackboard,
+                                             const std::string& parent_path)
 {
   // Determine the main tree from the XML before loading into the shared parser.
   tinyxml2::XMLDocument doc;
@@ -453,7 +454,13 @@ Tree BehaviorTreeFactory::createTreeFromText(const std::string& text,
   }
 
   const std::string resolved_ID = loadXmlAndResolveTreeId(
-      _p->parser.get(), main_tree_ID, [&] { _p->parser->loadFromText(text); });
+      _p->parser.get(), main_tree_ID, [&] {
+        if (parent_path.empty()) {
+          _p->parser->loadFromText(text);
+        } else {
+          _p->parser->loadFromTextWithPath(text, parent_path);
+        }
+      });
 
   // Set the polymorphic cast registry on the blackboard (Issue #943)
   blackboard->setPolymorphicCastRegistry(_p->polymorphic_registry);
