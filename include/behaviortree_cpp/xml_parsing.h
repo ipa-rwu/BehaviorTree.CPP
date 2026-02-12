@@ -31,6 +31,10 @@ public:
 
   void loadFromText(const std::string& xml_text, bool add_includes = true) override;
 
+  void loadFromTextWithPath(const std::string& xml_text,
+                            const std::string& parent_path = "",
+                            bool add_includes = true) override;
+
   [[nodiscard]] std::vector<std::string> registeredBehaviorTrees() const override;
 
   [[nodiscard]] Tree instantiateTree(const Blackboard::Ptr& root_blackboard,
