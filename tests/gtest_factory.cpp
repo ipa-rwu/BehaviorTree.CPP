@@ -1,6 +1,8 @@
 #include "behaviortree_cpp/xml_parsing.h"
 
+#include <chrono>
 #include <filesystem>
+#include <fstream>
 #include <set>
 #include <string>
 #include <tuple>
@@ -16,6 +18,23 @@ using namespace BT;
 
 namespace
 {
+std::filesystem::path makeIncludeTestDirectory()
+{
+  auto path =
+      std::filesystem::temp_directory_path() /
+      ("btcpp_include_test_" +
+       std::to_string(std::chrono::steady_clock::now().time_since_epoch().count()));
+  std::filesystem::create_directories(path);
+  return path;
+}
+
+void writeIncludeTestFile(const std::filesystem::path& path, const std::string& contents)
+{
+  std::filesystem::create_directories(path.parent_path());
+  std::ofstream file(path);
+  file << contents;
+}
+
 // clang-format off
 
 const char* xml_text = R"(
@@ -1043,4 +1062,81 @@ TEST(BehaviorTreeFactory, TooManyNodesForUID)
   EXPECT_EQ(uids.size(), 65535u);
   EXPECT_EQ(uids.count(0), 0u);
   EXPECT_THROW((void)tree.getUID(), RuntimeError);
+}
+
+TEST(BehaviorTreeFactory, CreateTreeFromTextResolvesNestedIncludesFromParentPath)
+{
+  const auto directory = makeIncludeTestDirectory();
+  const auto root_path = directory / "root";
+  const std::string xml = R"(<root BTCPP_format="4" main_tree_to_execute="Main">
+      <include path="sub/child.xml" />
+      <BehaviorTree ID="Main"><SubTree ID="Child" /></BehaviorTree>
+    </root>)";
+  writeIncludeTestFile(root_path / "sub/child.xml",
+                       R"(<root BTCPP_format="4"><include path="../grand.xml" />
+      <BehaviorTree ID="Child"><SubTree ID="Grand" /></BehaviorTree></root>)");
+  writeIncludeTestFile(
+      root_path / "grand.xml",
+      R"(<root BTCPP_format="4"><BehaviorTree ID="Grand"><AlwaysSuccess /></BehaviorTree></root>)");
+
+  BehaviorTreeFactory factory;
+
+  auto first = factory.createTreeFromText(xml, Blackboard::create(), root_path.string());
+  EXPECT_EQ(NodeStatus::SUCCESS, first.tickWhileRunning());
+  auto repeated =
+      factory.createTreeFromText(xml, Blackboard::create(), root_path.string());
+  EXPECT_EQ(NodeStatus::SUCCESS, repeated.tickWhileRunning());
+
+  std::filesystem::remove_all(directory);
+}
+
+TEST(BehaviorTreeFactory, FailedTextIncludeDoesNotPoisonSubsequentLoad)
+{
+  const auto directory = makeIncludeTestDirectory();
+  const std::string missing_include =
+      R"(<root BTCPP_format="4"><include path="missing/absent.xml" />
+       <BehaviorTree ID="Main"><AlwaysSuccess /></BehaviorTree></root>)";
+  const std::string valid_xml =
+      R"(<root BTCPP_format="4"><include path="child.xml" />
+       <BehaviorTree ID="Main"><SubTree ID="Child" /></BehaviorTree></root>)";
+  writeIncludeTestFile(
+      directory / "child.xml",
+      R"(<root BTCPP_format="4"><BehaviorTree ID="Child"><AlwaysSuccess /></BehaviorTree></root>)");
+
+  BehaviorTreeFactory factory;
+  EXPECT_THROW((void)factory.createTreeFromText(missing_include, Blackboard::create(),
+                                                directory.string()),
+               RuntimeError);
+  auto tree =
+      factory.createTreeFromText(valid_xml, Blackboard::create(), directory.string());
+  EXPECT_EQ(NodeStatus::SUCCESS, tree.tickWhileRunning());
+  std::filesystem::remove_all(directory);
+}
+
+TEST(BehaviorTreeFactory, CreateTreeFromTextWithoutParentPathUsesCurrentDirectory)
+{
+  const auto directory = makeIncludeTestDirectory();
+  const auto custom_parent = directory / "custom";
+  std::filesystem::create_directories(custom_parent);
+  writeIncludeTestFile(
+      directory / "child.xml",
+      R"(<root BTCPP_format="4"><BehaviorTree ID="Child"><AlwaysSuccess /></BehaviorTree></root>)");
+  const auto previous_directory = std::filesystem::current_path();
+
+  BehaviorTreeFactory factory;
+  const auto warmup_xml =
+      R"(<root BTCPP_format="4"><BehaviorTree ID="Warmup"><AlwaysSuccess /></BehaviorTree></root>)";
+  auto warmup = factory.createTreeFromText(warmup_xml, Blackboard::create(),
+                                           custom_parent.string());
+  EXPECT_EQ(NodeStatus::SUCCESS, warmup.tickWhileRunning());
+
+  std::filesystem::current_path(directory);
+  const std::string xml =
+      R"(<root BTCPP_format="4"><include path="child.xml" />
+       <BehaviorTree ID="Main"><SubTree ID="Child" /></BehaviorTree></root>)";
+  auto tree = factory.createTreeFromText(xml);
+  EXPECT_EQ(NodeStatus::SUCCESS, tree.tickWhileRunning());
+
+  std::filesystem::current_path(previous_directory);
+  std::filesystem::remove_all(directory);
 }
