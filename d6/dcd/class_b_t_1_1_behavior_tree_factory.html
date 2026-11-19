@@ -182,9 +182,9 @@ const std::unordered_map&lt; std::string, <a class="el" href="../../dc/d6c/struc
 const std::set&lt; std::string &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>builtinNodes</b> () const</td></tr>
 <tr class="memdesc:a976ea06ba865588977ec9ab312f25bd0"><td class="mdescLeft">&#160;</td><td class="mdescRight">List of builtin IDs. <br /></td></tr>
 <tr class="separator:a976ea06ba865588977ec9ab312f25bd0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3ba4831fbfd2a66d843e47e4cef8bb61"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d1/d79/class_b_t_1_1_tree.html">Tree</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/dcd/class_b_t_1_1_behavior_tree_factory.html#a3ba4831fbfd2a66d843e47e4cef8bb61">createTreeFromText</a> (const std::string &amp;text, Blackboard::Ptr blackboard=<a class="el" href="../../d0/d51/class_b_t_1_1_blackboard.html#ae997dc5aae731fd2724a018723c2317c">Blackboard::create</a>())</td></tr>
-<tr class="memdesc:a3ba4831fbfd2a66d843e47e4cef8bb61"><td class="mdescLeft">&#160;</td><td class="mdescRight">createTreeFromText will parse the XML directly from string. The XML needs to contain either a single &lt;BehaviorTree&gt; or specify the attribute [main_tree_to_execute].  <br /></td></tr>
-<tr class="separator:a3ba4831fbfd2a66d843e47e4cef8bb61"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2fd2c775e5ceb0f8e60ab0dd490764f8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d1/d79/class_b_t_1_1_tree.html">Tree</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/dcd/class_b_t_1_1_behavior_tree_factory.html#a2fd2c775e5ceb0f8e60ab0dd490764f8">createTreeFromText</a> (const std::string &amp;text, Blackboard::Ptr blackboard=<a class="el" href="../../d0/d51/class_b_t_1_1_blackboard.html#ae997dc5aae731fd2724a018723c2317c">Blackboard::create</a>(), const std::string &amp;parent_path=&quot;&quot;)</td></tr>
+<tr class="memdesc:a2fd2c775e5ceb0f8e60ab0dd490764f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">createTreeFromText will parse the XML directly from string. The XML needs to contain either a single &lt;BehaviorTree&gt; or specify the attribute [main_tree_to_execute].  <br /></td></tr>
+<tr class="separator:a2fd2c775e5ceb0f8e60ab0dd490764f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad1f21dc9192e84ed014f871575575705"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d1/d79/class_b_t_1_1_tree.html">Tree</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/dcd/class_b_t_1_1_behavior_tree_factory.html#ad1f21dc9192e84ed014f871575575705">createTreeFromFile</a> (const std::filesystem::path &amp;file_path, Blackboard::Ptr blackboard=<a class="el" href="../../d0/d51/class_b_t_1_1_blackboard.html#ae997dc5aae731fd2724a018723c2317c">Blackboard::create</a>())</td></tr>
 <tr class="memdesc:ad1f21dc9192e84ed014f871575575705"><td class="mdescLeft">&#160;</td><td class="mdescRight">createTreeFromFile will parse the XML from a given file. The XML needs to contain either a single &lt;BehaviorTree&gt; or specify the attribute [main_tree_to_execute].  <br /></td></tr>
 <tr class="separator:ad1f21dc9192e84ed014f871575575705"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -336,8 +336,8 @@ const <a class="el" href="../../d1/ddb/class_b_t_1_1_polymorphic_cast_registry.h
 
 </div>
 </div>
-<a id="a3ba4831fbfd2a66d843e47e4cef8bb61" name="a3ba4831fbfd2a66d843e47e4cef8bb61"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3ba4831fbfd2a66d843e47e4cef8bb61">&#9670;&#160;</a></span>createTreeFromText()</h2>
+<a id="a2fd2c775e5ceb0f8e60ab0dd490764f8" name="a2fd2c775e5ceb0f8e60ab0dd490764f8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2fd2c775e5ceb0f8e60ab0dd490764f8">&#9670;&#160;</a></span>createTreeFromText()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -352,7 +352,13 @@ const <a class="el" href="../../d1/ddb/class_b_t_1_1_polymorphic_cast_registry.h
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">Blackboard::Ptr&#160;</td>
-          <td class="paramname"><em>blackboard</em> = <code><a class="el" href="../../d0/d51/class_b_t_1_1_blackboard.html#ae997dc5aae731fd2724a018723c2317c">Blackboard::create</a>()</code>&#160;</td>
+          <td class="paramname"><em>blackboard</em> = <code><a class="el" href="../../d0/d51/class_b_t_1_1_blackboard.html#ae997dc5aae731fd2724a018723c2317c">Blackboard::create</a>()</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>parent_path</em> = <code>&quot;&quot;</code>&#160;</td>
         </tr>
         <tr>
           <td></td>

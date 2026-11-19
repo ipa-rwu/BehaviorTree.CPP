@@ -143,6 +143,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a89503daac2fc70c50e220656c8002bc5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a86a3f7413b2c59356503b271e8f348d3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d05/class_b_t_1_1_x_m_l_parser.html#a86a3f7413b2c59356503b271e8f348d3">loadFromText</a> (const std::string &amp;xml_text, bool add_includes=true) override</td></tr>
 <tr class="separator:a86a3f7413b2c59356503b271e8f348d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a714940b0eb05def68c68731a1576f8f0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d05/class_b_t_1_1_x_m_l_parser.html#a714940b0eb05def68c68731a1576f8f0">loadFromTextWithPath</a> (const std::string &amp;xml_text, const std::string &amp;parent_path=&quot;&quot;, bool add_includes=true) override</td></tr>
+<tr class="separator:a714940b0eb05def68c68731a1576f8f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afac713fea8ab18630abd4bec5a690a27"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d05/class_b_t_1_1_x_m_l_parser.html#afac713fea8ab18630abd4bec5a690a27">registeredBehaviorTrees</a> () const override</td></tr>
 <tr class="separator:afac713fea8ab18630abd4bec5a690a27"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adde522f0fb4311add7e4a5847a8f6aa8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d1/d79/class_b_t_1_1_tree.html">Tree</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d05/class_b_t_1_1_x_m_l_parser.html#adde522f0fb4311add7e4a5847a8f6aa8">instantiateTree</a> (const Blackboard::Ptr &amp;root_blackboard, std::string main_tree_to_execute={}) override</td></tr>
@@ -168,6 +170,9 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>loadFromFile<
 <tr class="memitem:ae6b3ad33960b5902d1e7f74cb24e74f7 inherit pub_methods_class_b_t_1_1_parser"><td class="memItemLeft" align="right" valign="top"><a id="ae6b3ad33960b5902d1e7f74cb24e74f7" name="ae6b3ad33960b5902d1e7f74cb24e74f7"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>loadFromText</b> (const std::string &amp;xml_text, bool add_includes=true)=0</td></tr>
 <tr class="separator:ae6b3ad33960b5902d1e7f74cb24e74f7 inherit pub_methods_class_b_t_1_1_parser"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a446bbbfae49a982220f5f4e561e60a22 inherit pub_methods_class_b_t_1_1_parser"><td class="memItemLeft" align="right" valign="top"><a id="a446bbbfae49a982220f5f4e561e60a22" name="a446bbbfae49a982220f5f4e561e60a22"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>loadFromTextWithPath</b> (const std::string &amp;xml_text, const std::string &amp;parent_path, bool add_includes=true)=0</td></tr>
+<tr class="separator:a446bbbfae49a982220f5f4e561e60a22 inherit pub_methods_class_b_t_1_1_parser"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeb6004040a5f56c26a2a336afc4a7e40 inherit pub_methods_class_b_t_1_1_parser"><td class="memItemLeft" align="right" valign="top"><a id="aeb6004040a5f56c26a2a336afc4a7e40" name="aeb6004040a5f56c26a2a336afc4a7e40"></a>
 virtual std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>registeredBehaviorTrees</b> () const =0</td></tr>
 <tr class="separator:aeb6004040a5f56c26a2a336afc4a7e40 inherit pub_methods_class_b_t_1_1_parser"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -298,6 +303,50 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>clearInternal
           <td>(</td>
           <td class="paramtype">const std::string &amp;&#160;</td>
           <td class="paramname"><em>xml_text</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>add_includes</em> = <code>true</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="../../de/da6/class_b_t_1_1_parser.html">BT::Parser</a>.</p>
+
+</div>
+</div>
+<a id="a714940b0eb05def68c68731a1576f8f0" name="a714940b0eb05def68c68731a1576f8f0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a714940b0eb05def68c68731a1576f8f0">&#9670;&#160;</a></span>loadFromTextWithPath()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void BT::XMLParser::loadFromTextWithPath </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>xml_text</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>parent_path</em> = <code>&quot;&quot;</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
