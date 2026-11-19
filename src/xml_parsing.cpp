@@ -352,7 +352,7 @@ void XMLParser::loadFromText(const std::string& xml_text, bool add_includes)
 void XMLParser::loadFromTextWithPath(const std::string& xml_text,
                                      const std::string& parent_path, bool add_includes)
 {
-  _p->opened_documents.emplace_back(new XMLDocument());
+  _p->opened_documents.push_back(std::make_unique<XMLDocument>());
 
   XMLDocument* doc = _p->opened_documents.back().get();
   doc->Parse(xml_text.c_str(), xml_text.size());
