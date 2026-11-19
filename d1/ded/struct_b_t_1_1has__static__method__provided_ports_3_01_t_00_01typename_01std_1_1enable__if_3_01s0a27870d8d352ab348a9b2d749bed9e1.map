@@ -1,0 +1,4 @@
+<map id="BT::has_static_method_providedPorts&lt; T, typename std::enable_if&lt; std::is_same&lt; decltype(T::providedPorts()), PortsList &gt;::value &gt;::type &gt;" name="BT::has_static_method_providedPorts&lt; T, typename std::enable_if&lt; std::is_same&lt; decltype(T::providedPorts()), PortsList &gt;::value &gt;::type &gt;">
+<area shape="rect" id="node1" title=" " alt="" coords="5,81,251,177"/>
+<area shape="rect" id="node2" title=" " alt="" coords="72,5,184,33"/>
+</map>

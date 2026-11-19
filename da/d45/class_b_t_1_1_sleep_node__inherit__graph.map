@@ -1,0 +1,7 @@
+<map id="BT::SleepNode" name="BT::SleepNode">
+<area shape="rect" id="node1" title="Sleep for a certain amount of time. Consider also using the decorator &lt;Delay&gt;" alt="" coords="33,308,149,336"/>
+<area shape="rect" id="node2" href="$d0/d1f/class_b_t_1_1_stateful_action_node.html" title="The StatefulActionNode is the preferred way to implement asynchronous Actions. It is actually easier ..." alt="" coords="5,232,177,260"/>
+<area shape="rect" id="node3" href="$d3/de2/class_b_t_1_1_action_node_base.html" title="The ActionNodeBase is the base class to use to create any kind of action. A particular derived class ..." alt="" coords="15,157,167,184"/>
+<area shape="rect" id="node4" href="$d1/de2/class_b_t_1_1_leaf_node.html" title=" " alt="" coords="37,81,145,109"/>
+<area shape="rect" id="node5" href="$da/d61/class_b_t_1_1_tree_node.html" title="Abstract base class for Behavior Tree Nodes." alt="" coords="38,5,144,33"/>
+</map>

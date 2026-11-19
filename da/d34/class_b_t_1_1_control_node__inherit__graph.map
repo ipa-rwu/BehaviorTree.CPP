@@ -1,0 +1,17 @@
+<map id="BT::ControlNode" name="BT::ControlNode">
+<area shape="rect" id="node1" title="The ControlNode is the base class for nodes that can have multiple children." alt="" coords="160,317,286,345"/>
+<area shape="rect" id="node3" href="$dc/da6/class_b_t_1_1_fallback_node.html" title="The FallbackNode is used to try different strategies, until one succeeds. If any child returns RUNNIN..." alt="" coords="364,5,496,33"/>
+<area shape="rect" id="node4" href="$df/d19/class_b_t_1_1_finally_node.html" title="The Finally node ticks its first child (&quot;main&quot;) and then ticks its second child (&quot;cleanup&quot;),..." alt="" coords="369,57,491,85"/>
+<area shape="rect" id="node5" href="$d8/d08/class_b_t_1_1_if_then_else_node.html" title="IfThenElseNode must have exactly 2 or 3 children. This node is NOT reactive." alt="" coords="356,109,504,137"/>
+<area shape="rect" id="node6" href="$dc/d0b/class_b_t_1_1_manual_selector_node.html" title="Use a Terminal User Interface (ncurses) to select a certain child manually." alt="" coords="340,161,520,189"/>
+<area shape="rect" id="node7" href="$d3/d02/class_b_t_1_1_parallel_all_node.html" title="The ParallelAllNode execute all its children concurrently, but not in separate threads!" alt="" coords="358,213,502,241"/>
+<area shape="rect" id="node8" href="$d1/dee/class_b_t_1_1_parallel_node.html" title="The ParallelNode execute all its children concurrently, but not in separate threads!" alt="" coords="366,265,494,293"/>
+<area shape="rect" id="node9" href="$dc/d04/class_b_t_1_1_reactive_fallback.html" title="The ReactiveFallback is similar to a ParallelNode. All the children are ticked from first to last:" alt="" coords="352,317,508,345"/>
+<area shape="rect" id="node10" href="$de/d9f/class_b_t_1_1_reactive_sequence.html" title="The ReactiveSequence is similar to a ParallelNode. All the children are ticked from first to last:" alt="" coords="348,369,513,397"/>
+<area shape="rect" id="node11" href="$d9/ddd/class_b_t_1_1_sequence_node.html" title="The SequenceNode is used to tick children in an ordered sequence. If any child returns RUNNING,..." alt="" coords="359,421,501,449"/>
+<area shape="rect" id="node12" href="$de/d69/class_b_t_1_1_sequence_with_memory.html" title="The SequenceWithMemory is used to tick children in an ordered sequence. If any child returns RUNNING,..." alt="" coords="334,473,526,501"/>
+<area shape="rect" id="node13" href="$dc/dae/class_b_t_1_1_switch_node.html" title=" " alt="" coords="346,525,515,570"/>
+<area shape="rect" id="node14" href="$d4/dc5/class_b_t_1_1_try_catch_node.html" title="The TryCatch node executes children 1..N&#45;1 as a Sequence (&quot;try&quot; block)." alt="" coords="362,593,498,621"/>
+<area shape="rect" id="node15" href="$d7/d54/class_b_t_1_1_while_do_else_node.html" title="WhileDoElse must have exactly 2 or 3 children. It is a REACTIVE node of IfThenElseNode." alt="" coords="350,645,511,673"/>
+<area shape="rect" id="node2" href="$da/d61/class_b_t_1_1_tree_node.html" title="Abstract base class for Behavior Tree Nodes." alt="" coords="5,317,112,345"/>
+</map>

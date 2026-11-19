@@ -1,0 +1,54 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" href="$da/d61/class_b_t_1_1_tree_node.html" title="Abstract base class for Behavior Tree Nodes." alt="" coords="5,1061,112,1089"/>
+<area shape="rect" id="node2" href="$d6/ddb/class_b_t_1_1_control_node.html" title="The ControlNode is the base class for nodes that can have multiple children." alt="" coords="168,344,294,372"/>
+<area shape="rect" id="node16" href="$d1/de7/class_b_t_1_1_decorator_node.html" title="The DecoratorNode is the base class for nodes that have exactly one child." alt="" coords="160,1061,303,1089"/>
+<area shape="rect" id="node33" href="$d1/de2/class_b_t_1_1_leaf_node.html" title=" " alt="" coords="178,1477,285,1505"/>
+<area shape="rect" id="node3" href="$dc/da6/class_b_t_1_1_fallback_node.html" title="The FallbackNode is used to try different strategies, until one succeeds. If any child returns RUNNIN..." alt="" coords="404,5,536,33"/>
+<area shape="rect" id="node4" href="$df/d19/class_b_t_1_1_finally_node.html" title="The Finally node ticks its first child (&quot;main&quot;) and then ticks its second child (&quot;cleanup&quot;),..." alt="" coords="409,57,531,85"/>
+<area shape="rect" id="node5" href="$d8/d08/class_b_t_1_1_if_then_else_node.html" title="IfThenElseNode must have exactly 2 or 3 children. This node is NOT reactive." alt="" coords="396,109,544,137"/>
+<area shape="rect" id="node6" href="$dc/d0b/class_b_t_1_1_manual_selector_node.html" title="Use a Terminal User Interface (ncurses) to select a certain child manually." alt="" coords="380,161,560,189"/>
+<area shape="rect" id="node7" href="$d3/d02/class_b_t_1_1_parallel_all_node.html" title="The ParallelAllNode execute all its children concurrently, but not in separate threads!" alt="" coords="398,213,542,241"/>
+<area shape="rect" id="node8" href="$d1/dee/class_b_t_1_1_parallel_node.html" title="The ParallelNode execute all its children concurrently, but not in separate threads!" alt="" coords="406,265,534,293"/>
+<area shape="rect" id="node9" href="$dc/d04/class_b_t_1_1_reactive_fallback.html" title="The ReactiveFallback is similar to a ParallelNode. All the children are ticked from first to last:" alt="" coords="392,317,548,345"/>
+<area shape="rect" id="node10" href="$de/d9f/class_b_t_1_1_reactive_sequence.html" title="The ReactiveSequence is similar to a ParallelNode. All the children are ticked from first to last:" alt="" coords="388,369,553,397"/>
+<area shape="rect" id="node11" href="$d9/ddd/class_b_t_1_1_sequence_node.html" title="The SequenceNode is used to tick children in an ordered sequence. If any child returns RUNNING,..." alt="" coords="399,421,541,449"/>
+<area shape="rect" id="node12" href="$de/d69/class_b_t_1_1_sequence_with_memory.html" title="The SequenceWithMemory is used to tick children in an ordered sequence. If any child returns RUNNING,..." alt="" coords="374,473,566,501"/>
+<area shape="rect" id="node13" href="$dc/dae/class_b_t_1_1_switch_node.html" title=" " alt="" coords="386,525,555,570"/>
+<area shape="rect" id="node14" href="$d4/dc5/class_b_t_1_1_try_catch_node.html" title="The TryCatch node executes children 1..N&#45;1 as a Sequence (&quot;try&quot; block)." alt="" coords="402,593,538,621"/>
+<area shape="rect" id="node15" href="$d7/d54/class_b_t_1_1_while_do_else_node.html" title="WhileDoElse must have exactly 2 or 3 children. It is a REACTIVE node of IfThenElseNode." alt="" coords="390,645,551,673"/>
+<area shape="rect" id="node17" href="$df/dc2/class_b_t_1_1_consume_queue.html" title=" " alt="" coords="377,697,563,725"/>
+<area shape="rect" id="node18" href="$d4/d56/class_b_t_1_1_delay_node.html" title="The delay node will introduce a delay and then tick the child returning the status of the child as it..." alt="" coords="412,749,529,777"/>
+<area shape="rect" id="node19" href="$d1/d7b/class_b_t_1_1_entry_updated_decorator.html" title="The EntryUpdatedDecorator checks the Timestamp in an entry to determine if the value was updated sinc..." alt="" coords="371,801,569,829"/>
+<area shape="rect" id="node20" href="$d4/d8c/class_b_t_1_1_force_failure_node.html" title="The ForceFailureNode always returns FAILURE when the child completes, regardless of whether the child..." alt="" coords="392,853,549,881"/>
+<area shape="rect" id="node21" href="$d7/db8/class_b_t_1_1_force_success_node.html" title="The ForceSuccessNode always returns SUCCESS when the child completes, regardless of whether the child..." alt="" coords="387,905,553,933"/>
+<area shape="rect" id="node22" href="$d2/ded/class_b_t_1_1_inverter_node.html" title="The InverterNode returns SUCCESS if child fails of FAILURE is child succeeds. RUNNING status is propa..." alt="" coords="405,957,535,985"/>
+<area shape="rect" id="node23" href="$de/d22/class_b_t_1_1_keep_running_until_failure_node.html" title="The KeepRunningUntilFailureNode keeps ticking the child as long as it returns SUCCESS,..." alt="" coords="351,1009,589,1037"/>
+<area shape="rect" id="node24" href="$dd/d32/class_b_t_1_1_loop_node.html" title="The LoopNode class is used to pop_front elements from a std::deque. This element is copied into the p..." alt="" coords="396,1061,544,1089"/>
+<area shape="rect" id="node25" href="$d7/dd5/class_b_t_1_1_precondition_node.html" title="The PreconditionNode evaluates a script condition before ticking its child." alt="" coords="390,1113,550,1141"/>
+<area shape="rect" id="node26" href="$d6/d78/class_b_t_1_1_repeat_node.html" title="The RepeatNode is used to execute a child several times, as long as it succeed." alt="" coords="408,1165,533,1193"/>
+<area shape="rect" id="node27" href="$dd/de4/class_b_t_1_1_retry_node.html" title="The RetryNode is used to execute a child several times if it fails." alt="" coords="413,1217,527,1245"/>
+<area shape="rect" id="node29" href="$dd/dbd/class_b_t_1_1_run_once_node.html" title="The RunOnceNode is used when you want to execute the child only once. If the child is asynchronous,..." alt="" coords="402,1269,539,1297"/>
+<area shape="rect" id="node30" href="$d3/d37/class_b_t_1_1_simple_decorator_node.html" title="The SimpleDecoratorNode provides an easy to use DecoratorNode. The user should simply provide a callb..." alt="" coords="376,1321,564,1349"/>
+<area shape="rect" id="node31" href="$df/d34/class_b_t_1_1_sub_tree_node.html" title="The SubTreeNode is a way to wrap an entire Subtree, creating a separated BlackBoard...." alt="" coords="405,1373,535,1401"/>
+<area shape="rect" id="node32" href="$d4/d20/class_b_t_1_1_timeout_node.html" title="The TimeoutNode will halt() a running child if the latter has been RUNNING longer than a given time...." alt="" coords="404,1425,537,1453"/>
+<area shape="rect" id="node28" href="$d1/def/class_b_t_1_1_retry_node_typo.html" title=" " alt="" coords="658,1217,803,1245"/>
+<area shape="rect" id="node34" href="$d3/de2/class_b_t_1_1_action_node_base.html" title="The ActionNodeBase is the base class to use to create any kind of action. A particular derived class ..." alt="" coords="394,1477,546,1505"/>
+<area shape="rect" id="node50" href="$dc/dfc/class_b_t_1_1_condition_node.html" title="The ConditionNode is a leaf node used to check a condition." alt="" coords="400,1581,541,1609"/>
+<area shape="rect" id="node35" href="$d8/dd4/class_b_t_1_1_coro_action_node.html" title="The CoroActionNode class is an a good candidate for asynchronous actions which need to communicate wi..." alt="" coords="655,1321,806,1349"/>
+<area shape="rect" id="node36" href="$d0/d1f/class_b_t_1_1_stateful_action_node.html" title="The StatefulActionNode is the preferred way to implement asynchronous Actions. It is actually easier ..." alt="" coords="645,1373,816,1401"/>
+<area shape="rect" id="node39" href="$da/d73/class_b_t_1_1_sync_action_node.html" title="The SyncActionNode is an ActionNode that explicitly prevents the status RUNNING and doesn&#39;t require a..." alt="" coords="655,1477,806,1505"/>
+<area shape="rect" id="node49" href="$d2/d61/class_b_t_1_1_threaded_action.html" title="The ThreadedAction executes the tick in a different thread." alt="" coords="657,1529,804,1557"/>
+<area shape="rect" id="node37" href="$d9/d33/class_b_t_1_1_sleep_node.html" title="Sleep for a certain amount of time. Consider also using the decorator &lt;Delay&gt;" alt="" coords="909,1217,1024,1245"/>
+<area shape="rect" id="node38" href="$d5/d7f/class_b_t_1_1_test_node.html" title="The TestNode is a Node that can be configure to:" alt="" coords="914,1269,1020,1297"/>
+<area shape="rect" id="node40" href="$d0/d9c/class_b_t_1_1_always_failure_node.html" title=" " alt="" coords="882,1321,1052,1349"/>
+<area shape="rect" id="node41" href="$dd/dce/class_b_t_1_1_always_success_node.html" title=" " alt="" coords="878,1373,1056,1401"/>
+<area shape="rect" id="node42" href="$df/d9f/class_b_t_1_1_entry_updated_action.html" title="The EntryUpdatedAction checks the Timestamp in an entry to determine if the value was updated since t..." alt="" coords="879,1425,1054,1453"/>
+<area shape="rect" id="node43" href="$d7/d3a/class_b_t_1_1_pop_from_queue.html" title=" " alt="" coords="876,1477,1058,1505"/>
+<area shape="rect" id="node44" href="$d9/d8c/class_b_t_1_1_queue_size.html" title=" " alt="" coords="891,1529,1043,1557"/>
+<area shape="rect" id="node45" href="$db/d0f/class_b_t_1_1_script_node.html" title="The ScriptNode executes a piece of script code to set or modify entries in the Blackboard." alt="" coords="909,1581,1025,1609"/>
+<area shape="rect" id="node46" href="$d7/d4f/class_b_t_1_1_set_blackboard_node.html" title="The SetBlackboard is action used to store a string into an entry of the Blackboard specified in &quot;outp..." alt="" coords="880,1633,1054,1661"/>
+<area shape="rect" id="node47" href="$d7/da7/class_b_t_1_1_simple_action_node.html" title="The SimpleActionNode provides an easy to use SyncActionNode. The user should simply provide a callbac..." alt="" coords="884,1685,1050,1713"/>
+<area shape="rect" id="node48" href="$d1/d77/class_b_t_1_1_unset_blackboard_node.html" title=" " alt="" coords="872,1737,1062,1765"/>
+<area shape="rect" id="node51" href="$da/d26/class_b_t_1_1_script_condition.html" title="Execute a script, and if the result is true, return SUCCESS, FAILURE otherwise." alt="" coords="658,1581,803,1609"/>
+<area shape="rect" id="node52" href="$dc/d49/class_b_t_1_1_simple_condition_node.html" title="The SimpleConditionNode provides an easy to use ConditionNode. The user should simply provide a callb..." alt="" coords="637,1633,824,1661"/>
+</map>

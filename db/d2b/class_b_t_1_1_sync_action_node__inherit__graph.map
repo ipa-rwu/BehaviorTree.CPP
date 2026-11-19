@@ -1,0 +1,15 @@
+<map id="BT::SyncActionNode" name="BT::SyncActionNode">
+<area shape="rect" id="node1" title="The SyncActionNode is an ActionNode that explicitly prevents the status RUNNING and doesn&#39;t require a..." alt="" coords="515,213,667,241"/>
+<area shape="rect" id="node5" href="$d0/d9c/class_b_t_1_1_always_failure_node.html" title=" " alt="" coords="725,5,894,33"/>
+<area shape="rect" id="node6" href="$dd/dce/class_b_t_1_1_always_success_node.html" title=" " alt="" coords="721,57,899,85"/>
+<area shape="rect" id="node7" href="$df/d9f/class_b_t_1_1_entry_updated_action.html" title="The EntryUpdatedAction checks the Timestamp in an entry to determine if the value was updated since t..." alt="" coords="722,109,898,137"/>
+<area shape="rect" id="node8" href="$d7/d3a/class_b_t_1_1_pop_from_queue.html" title=" " alt="" coords="719,161,901,189"/>
+<area shape="rect" id="node9" href="$d9/d8c/class_b_t_1_1_queue_size.html" title=" " alt="" coords="734,213,886,241"/>
+<area shape="rect" id="node10" href="$db/d0f/class_b_t_1_1_script_node.html" title="The ScriptNode executes a piece of script code to set or modify entries in the Blackboard." alt="" coords="752,265,868,293"/>
+<area shape="rect" id="node11" href="$d7/d4f/class_b_t_1_1_set_blackboard_node.html" title="The SetBlackboard is action used to store a string into an entry of the Blackboard specified in &quot;outp..." alt="" coords="723,317,896,345"/>
+<area shape="rect" id="node12" href="$d7/da7/class_b_t_1_1_simple_action_node.html" title="The SimpleActionNode provides an easy to use SyncActionNode. The user should simply provide a callbac..." alt="" coords="727,369,892,397"/>
+<area shape="rect" id="node13" href="$d1/d77/class_b_t_1_1_unset_blackboard_node.html" title=" " alt="" coords="715,421,905,449"/>
+<area shape="rect" id="node2" href="$d3/de2/class_b_t_1_1_action_node_base.html" title="The ActionNodeBase is the base class to use to create any kind of action. A particular derived class ..." alt="" coords="315,213,467,241"/>
+<area shape="rect" id="node3" href="$d1/de2/class_b_t_1_1_leaf_node.html" title=" " alt="" coords="160,213,267,241"/>
+<area shape="rect" id="node4" href="$da/d61/class_b_t_1_1_tree_node.html" title="Abstract base class for Behavior Tree Nodes." alt="" coords="5,213,112,241"/>
+</map>
