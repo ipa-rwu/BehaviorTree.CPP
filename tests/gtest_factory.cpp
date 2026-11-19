@@ -3,7 +3,6 @@
 #include <chrono>
 #include <filesystem>
 #include <fstream>
-#include <iterator>
 #include <set>
 #include <string>
 #include <tuple>
@@ -1069,11 +1068,10 @@ TEST(BehaviorTreeFactory, CreateTreeFromTextResolvesNestedIncludesFromParentPath
 {
   const auto directory = makeIncludeTestDirectory();
   const auto root_path = directory / "root";
-  writeIncludeTestFile(root_path / "main.xml",
-                       R"(<root BTCPP_format="4" main_tree_to_execute="Main">
+  const std::string xml = R"(<root BTCPP_format="4" main_tree_to_execute="Main">
       <include path="sub/child.xml" />
       <BehaviorTree ID="Main"><SubTree ID="Child" /></BehaviorTree>
-    </root>)");
+    </root>)";
   writeIncludeTestFile(root_path / "sub/child.xml",
                        R"(<root BTCPP_format="4"><include path="../grand.xml" />
       <BehaviorTree ID="Child"><SubTree ID="Grand" /></BehaviorTree></root>)");
@@ -1081,9 +1079,6 @@ TEST(BehaviorTreeFactory, CreateTreeFromTextResolvesNestedIncludesFromParentPath
       root_path / "grand.xml",
       R"(<root BTCPP_format="4"><BehaviorTree ID="Grand"><AlwaysSuccess /></BehaviorTree></root>)");
 
-  std::ifstream input(root_path / "main.xml");
-  const std::string xml((std::istreambuf_iterator<char>(input)),
-                        std::istreambuf_iterator<char>());
   BehaviorTreeFactory factory;
 
   auto first = factory.createTreeFromText(xml, Blackboard::create(), root_path.string());
@@ -1109,8 +1104,8 @@ TEST(BehaviorTreeFactory, FailedTextIncludeDoesNotPoisonSubsequentLoad)
       R"(<root BTCPP_format="4"><BehaviorTree ID="Child"><AlwaysSuccess /></BehaviorTree></root>)");
 
   BehaviorTreeFactory factory;
-  EXPECT_THROW(factory.createTreeFromText(missing_include, Blackboard::create(),
-                                          directory.string()),
+  EXPECT_THROW((void)factory.createTreeFromText(missing_include, Blackboard::create(),
+                                                directory.string()),
                RuntimeError);
   auto tree =
       factory.createTreeFromText(valid_xml, Blackboard::create(), directory.string());
