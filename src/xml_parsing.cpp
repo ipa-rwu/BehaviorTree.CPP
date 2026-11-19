@@ -344,6 +344,7 @@ void XMLParser::loadFromText(const std::string& xml_text, bool add_includes)
   XMLDocument* doc = _p->opened_documents.back().get();
   doc->Parse(xml_text.c_str(), xml_text.size());
 
+  _p->current_path = std::filesystem::current_path();
   _p->include_stack.clear();
   _p->loadLastDocImpl(add_includes);
 }
@@ -356,9 +357,8 @@ void XMLParser::loadFromTextWithPath(
   XMLDocument* doc = _p->opened_documents.back().get();
   doc->Parse(xml_text.c_str(), xml_text.size());
 
-  if (!parent_path.empty()) {
-    _p->current_path = std::filesystem::absolute(parent_path);
-  }
+  _p->current_path = parent_path.empty() ? std::filesystem::current_path()
+                                          : std::filesystem::absolute(parent_path);
   _p->include_stack.clear();
   _p->loadLastDocImpl(add_includes);
 }
